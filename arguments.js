@@ -14,18 +14,32 @@
 //         console.log(sum);
 //     }
 // sum2(1,2,3) //=> 6
+ 
 
 Function.prototype.myBind = function(){
     let that = this;
-    let context = this.arguments[0];
-    const args = [];
-    // for (i = 0; i < arguments.length; i++){
-    //     return that.function(ctx){
-    //         arr.push(that.call(that.arguments[i]));
-    //     }
-    // }
+    let context = arguments[0]; // pavlov #context
+    let bindArgs = Array.from(arguments).slice(1)  // BindTime variable
+    const a = [];
+    debugger
+    console.log(arguments)
+        return function(){
+            let callArgs = Array.from(arguments) // CallTime variable
+            debugger
+            console.log(arguments)
+            that.apply(context,bindArgs.concat(callArgs)) //Make sure that all args is in an array at this point
+            // arr.push(that.call(that.arguments[]));
+}
     context.says
 }
+// markov.says("meow", "Ned");
+//   // Markov says meow to Ned!
+//   // true
+  
+//   // bind time args are "meow" and "Kush", no call time args
+//   markov.says.myBind(pavlov, "meow", "Kush")();
+//   // Pavlov says meow to Kush!
+//   // true
 
 // function myBind() {
 //     let that = this;
@@ -34,12 +48,12 @@ Function.prototype.myBind = function(){
 
 // }
 // @@Yesterday MyBind@@
-Function.prototype.myBind = function(object) {
-    const fn = this;
-     return function() {
-        fn.call(object)
-     } 
-  }
+// Function.prototype.myBind = function(object) {
+//     const fn = this;
+//      return function() {
+//         fn.call(object)
+//      } 
+//   }
 
 // @@Example to Run@@
 class Cat {
@@ -72,7 +86,7 @@ class Cat {
   // true
   
   // no bind time args (other than context), call time args are "meow" and "a tree"
-  markov.says.myBind(pavlov)("meow", "a tree");
+  markov.says.myBind(pavlov)("meow", "a tree"); 
   // Pavlov says meow to a tree!
   // true
   
@@ -87,12 +101,12 @@ class Cat {
   // Pavlov says meow to me!
   // true
 
-// function curriedSum(number1, numbers2, etc){
+// // function curriedSum(number1, numbers2, etc){
 
-// }
-// // @@ example to run
-// // const sum = curriedSum(4);
-// // sum(5)(30)(20)(1); // => 56
-// Function.prototype.curry(number1, number2, etc){
+// // }
+// // // @@ example to run
+// // // const sum = curriedSum(4);
+// // // sum(5)(30)(20)(1); // => 56
+// // Function.prototype.curry(number1, number2, etc){
     
-// }
+// // }
