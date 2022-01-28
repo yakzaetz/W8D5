@@ -17,20 +17,14 @@
  
 
 Function.prototype.myBind = function(){
-    let that = this;
+    let fn = this;  
     let context = arguments[0]; // pavlov #context
     let bindArgs = Array.from(arguments).slice(1)  // BindTime variable
-    const a = [];
-    debugger
-    console.log(arguments)
-        return function(){
-            let callArgs = Array.from(arguments) // CallTime variable
-            debugger
-            console.log(arguments)
-            that.apply(context,bindArgs.concat(callArgs)) //Make sure that all args is in an array at this point
-            // arr.push(that.call(that.arguments[]));
-}
-    context.says
+    
+    return function(){ // returns a funcction
+        let callArgs = Array.from(arguments) // CallTime variable
+        fn.apply(context,bindArgs.concat(callArgs))    
+    }
 }
 // markov.says("meow", "Ned");
 //   // Markov says meow to Ned!
